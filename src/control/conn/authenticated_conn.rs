@@ -648,6 +648,11 @@ impl<S, F, H> AuthenticatedConn<S, H>
         self.get_info("version").await?;
         Ok(())
     }
+
+    // write_data writes *RAW* data into tor controller and flushes stream
+    pub async fn write_data(&mut self, data: &[u8]) -> Result<(), ConnError> {
+        self.conn.write_data(data).await
+    }
 }
 
 #[cfg(test)]
