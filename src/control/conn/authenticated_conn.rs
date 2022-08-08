@@ -653,6 +653,10 @@ impl<S, F, H> AuthenticatedConn<S, H>
     pub async fn write_data(&mut self, data: &[u8]) -> Result<(), ConnError> {
         self.conn.write_data(data).await
     }
+
+    pub async fn receive_data(&mut self) -> Result<(u16, Vec<String>), ConnError> {
+        self.conn.receive_data().await
+    }
 }
 
 #[cfg(test)]
